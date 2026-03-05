@@ -1,45 +1,50 @@
 import os
 from datetime import datetime
+
 import requests
 from flask import Flask, render_template_string
 
 app = Flask(__name__)
 
 # API key - get your free key from https://api-ninjas.com/
-API_KEY = os.getenv('NINJA_API_KEY', 'YOUR_API_KEY_HERE')
+API_KEY = os.getenv("NINJA_API_KEY", "YOUR_API_KEY_HERE")
 
-@app.route('/')
+
+@app.route("/")
 def home():
     # Get current datetime
-    current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    
+    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
     # Get random quote from API
     try:
         response = requests.get(
-            'https://api-ninjas.com/api/quotes',
-            headers={'X-Api-Key': API_KEY},
-            params={'category': 'happiness'}  # You can change category
+            "https://api-ninjas.com/api/quotes",
+            headers={"X-Api-Key": API_KEY},
+            params={"category": "happiness"},  # You can change category
         )
         response.raise_for_status()
         quote_data = response.json()[0]
-        quote = quote_data['quote']
-        author = quote_data['author']
+        quote = quote_data["quote"]
+        author = quote_data["author"]
     except Exception as e:
         # Fallback quote if API fails
         quote = "The best way to predict the future is to create it."
         author = "Peter Drucker"
-    
+
     # Get last access time from session or use current time
     last_access = current_time
-    
-    return render_template_string(HTML_TEMPLATE, 
-                                quote=quote, 
-                                author=author, 
-                                current_time=current_time,
-                                last_access=last_access)
+
+    return render_template_string(
+        HTML_TEMPLATE,
+        quote=quote,
+        author=author,
+        current_time=current_time,
+        last_access=last_access,
+    )
+
 
 # HTML template with centered content and refresh functionality
-HTML_TEMPLATE = '''
+HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -130,11 +135,11 @@ HTML_TEMPLATE = '''
     </div>
 </body>
 </html>
-'''
+"""
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print("Starting Quote App...")
     print("Get your free API key from: https://api-ninjas.com/")
     print("Set it as environment variable: NINJA_API_KEY=your_key")
     print("\nVisit: http://127.0.0.1:5000")
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host="0.0.0.0", port=5000)
