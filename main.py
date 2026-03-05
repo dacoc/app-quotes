@@ -27,6 +27,7 @@ def home():
         quote = quote_data["quote"]
         author = quote_data["author"]
     except Exception as e:
+        print(f"Unexpected {e=}, {type(e)=}")
         # Fallback quote if API fails
         quote = "The best way to predict the future is to create it."
         author = "Peter Drucker"
