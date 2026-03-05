@@ -13,6 +13,7 @@ Sign up (free tier: 50k requests/month)
 
 ### Copy your API key
 
+```
 # Windows (Command Prompt)
 set NINJA_API_KEY=your_actual_api_key_here
 
@@ -21,16 +22,17 @@ $env:NINJA_API_KEY="your_actual_api_key_here"
 
 # Mac/Linux
 export NINJA_API_KEY=your_actual_api_key_here
+```
 
 ## Install dependencies
-´´´bash
+```sh
 pip install flask requests
-´´´
+```
 
 ### Run the app
-´´´bash
+```bash
 python quote_app.py
-,,,
+```
 
 ### Check your app
 
