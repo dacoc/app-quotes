@@ -13,6 +13,7 @@ jobs:
           check_mode: true 
 
   build:
+    needs: check
     runs-on: ubuntu-latest
     strategy:
       matrix:
