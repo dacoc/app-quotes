@@ -3,6 +3,15 @@ name: Pylint
 on: [push]
 
 jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Black code formatter
+        # Use the community maintained action for black
+        uses: [psf/black@stable](https://github.com)
+        with:
+          check_mode: true 
+
   build:
     runs-on: ubuntu-latest
     strategy:
