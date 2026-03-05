@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: Run Black code formatter
         # Use the community maintained action for black
-        uses: [psf/black@stable](https://github.com)
+        uses: [psf/black@stable]
         with:
           check_mode: true 
 
