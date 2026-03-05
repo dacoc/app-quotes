@@ -6,6 +6,7 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: Run Black code formatter
         # Use the community maintained action for black
         uses: psf/black@stable
