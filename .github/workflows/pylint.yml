@@ -8,9 +8,7 @@ jobs:
     steps:
       - name: Run Black code formatter
         # Use the community maintained action for black
-        uses: [psf/black@stable]
-        with:
-          check_mode: true 
+        uses: psf/black@stable
 
   build:
     needs: check
